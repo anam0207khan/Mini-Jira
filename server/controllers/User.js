@@ -63,7 +63,6 @@ const loginUser = async (req, res) => {
             exp: now + oneHrInMs,
             userId: userFromDb._id,
             email: userFromDb.email,
-            // role: "INSTRUCTOR"
         };
 
         const token = jwt.sign(jwtPayload, jwtSecretKey);
