@@ -1,11 +1,8 @@
 const Project = require('../models/Project');
 
-// @desc Create a new project
-// @route POST /api/projects
 exports.createProject = async (req, res) => {
   try {
     const { name, description } = req.body;
-    console.log(req.user._id,"owner id")
 
     const newProject = await Project.create({
       name,
@@ -20,13 +17,11 @@ exports.createProject = async (req, res) => {
   }
 };
 
-// @desc Edit an existing project
-// @route PUT /api/projects/:id
+
 exports.editProject = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, description } = req.body;
-    console.log(req.user._id);
     
 
     const project = await Project.findOneAndUpdate(
@@ -45,8 +40,7 @@ exports.editProject = async (req, res) => {
   }
 };  
 
-// @desc Delete a project
-// @route DELETE /api/projects/:id
+
 exports.deleteProject = async (req, res) => {
   try {
     const { id } = req.params;
@@ -66,8 +60,6 @@ exports.deleteProject = async (req, res) => {
   }
 };
 
-// @desc Get all projects for the current user
-// @route GET /api/projects
   exports.getUserProjects = async (req, res) => {
     try {
       const projects = await Project.find({ owner: req.user._id }).sort({ createdAt: -1 });
@@ -77,8 +69,7 @@ exports.deleteProject = async (req, res) => {
     }
   };
 
-  // @desc Get a project by ID
-// @route GET /api/projects/:id
+
 exports.getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
